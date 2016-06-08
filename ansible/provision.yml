@@ -1,0 +1,30 @@
+---
+- hosts: all
+  vars_files:
+    - "/vagrant/project_vars.yml"
+
+- hosts: all
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="AllVar is {{AllVar}}"
+
+- hosts: web
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="WebVar is {{WebVar}}"
+
+- hosts: all
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="ProjectId is {{projectId}}"
+
+# - hosts: all
+#   become: true
+#   roles: 
+#   - roleA
