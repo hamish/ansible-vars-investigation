@@ -1,30 +1,56 @@
 ---
 - hosts: all
+  vars: 
+    InlineVar: "Test InlineVar"
   vars_files:
-    - "/vagrant/project_vars.yml"
+    - "../project_vars.yml"
+  tasks: 
+  - ping:
 
 - hosts: all
   become: true
   tasks: 
   - ping:
   - name: Print 
-    debug: msg="AllVar is {{AllVar}}"
+    debug: msg="AllVar is {{ AllVar }}"
 
 - hosts: web
   become: true
   tasks: 
   - ping:
   - name: Print 
-    debug: msg="WebVar is {{WebVar}}"
+    debug: msg="WebVar is {{ WebVar }}"
+
+- hosts: all
+  vars_files:
+    - "../project_vars.yml"
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="ProjectVar is {{ ProjectVar }}"
+
+
+- hosts: all
+  vars: 
+    InlineVar: "Test InlineVar"
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="InlineVar is {{ InlineVar }}"
+
+# This will fail
+- hosts: all
+  become: true
+  tasks: 
+  - ping:
+  - name: Print 
+    debug: msg="ProjectVar is {{ ProjectVar }}"
 
 - hosts: all
   become: true
   tasks: 
   - ping:
   - name: Print 
-    debug: msg="ProjectId is {{projectId}}"
-
-# - hosts: all
-#   become: true
-#   roles: 
-#   - roleA
+    debug: msg="InlineVar is {{ InlineVar }}"

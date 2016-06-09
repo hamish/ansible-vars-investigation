@@ -1,7 +1,0 @@
----
-# tasks file for roleA
-- name: Print 
-  debug: msg="roleA tasks"
-
-- name: Print 
-  debug: msg="ProjectId is {{projectId}}"
