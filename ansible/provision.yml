@@ -47,10 +47,13 @@
   - ping:
   - name: Print 
     debug: msg="ProjectVar is {{ ProjectVar }}"
+    ignore_errors: yes
 
+# This will fail
 - hosts: all
   become: true
   tasks: 
   - ping:
   - name: Print 
     debug: msg="InlineVar is {{ InlineVar }}"
+    ignore_errors: yes
